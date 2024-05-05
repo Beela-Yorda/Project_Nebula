@@ -2,10 +2,14 @@
   "name": "project_nebula",
   "version": "1.0.0",
   "description": "These instructions will help students to clone and host the React app on their GitHub Pages.",
-  "main": "index.js",
+  "main": "index.html",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "react-scripts start",
+    "build": "react-scripts build --entry ./public/index.html",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
+  
   "author": "beela yorda",
   "license": "ISC",
   "dependencies": {
@@ -13,5 +17,8 @@
     "react-router-dom": "^6.23.0",
     "redux": "^5.0.1",
     "styled-components": "^6.1.9"
+  },
+  "devDependencies": {
+    "react-scripts": "^3.0.1"
   }
 }
