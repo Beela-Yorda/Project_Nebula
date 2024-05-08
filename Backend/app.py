@@ -2,7 +2,20 @@ from flask import Flask, send_file, jsonify
 import os
 from flask_cors import CORS
 import mysql.connector
-from config import DATABASE
+from flask_mysqldb import MySQL
+from dotenv import load_dotenv
+import os
+
+# Load variables from .env file
+load_dotenv()
+
+# Access variables
+DATABASE = {
+    'host': os.getenv('DATABASE_HOST'),
+    'user': os.getenv('DATABASE_USER'),
+    'password': os.getenv('DATABASE_PASSWORD'),
+    'database': os.getenv('DATABASE_NAME')
+}
 
 
 app = Flask(__name__)
