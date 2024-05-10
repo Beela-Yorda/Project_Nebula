@@ -8,7 +8,10 @@ import os
 # Load variables from .env file
 load_dotenv()
 
-# Access variables
+app = Flask(__name__)
+cors = CORS(app, origin='*')
+
+# MySQL Configuration
 DATABASE = {
     'host': os.getenv('DATABASE_HOST'),
     'user': os.getenv('DATABASE_USER'),
@@ -16,9 +19,18 @@ DATABASE = {
     'database': os.getenv('DATABASE_NAME')
 }
 
+# Initialize MySQL
+mysql = MySQL(app)
 
-app = Flask(__name__)
-cors = CORS(app, origin='*')
+# Function to establish MySQL database connection
+def connect_to_database():
+    return mysql.connector.connect(**DATABASE)
+
+# Function to close database connection
+def close_database_connection(connection, cursor):
+    if connection.is_connected():
+        cursor.close()
+        connection.close()
 
 # Route to serve the index.html file from the root directory
 @app.route("/", methods=['GET'])
@@ -30,16 +42,6 @@ def index():
 @app.route('/api/health-check', methods=['GET'])
 def health_check():
     return jsonify({'status': 'OK'})
-
-# Function to establish MySQL database connection
-def connect_to_database():
-    return mysql.connector.connect(**DATABASE)
-
-# Function to close database connection
-def close_database_connection(connection, cursor):
-    if connection.is_connected():
-        cursor.close()
-        connection.close()
 
 # Test Database Connection
 @app.route('/api/test-db-connection', methods=['POST'])
@@ -55,4 +57,3 @@ def test_db_connection():
 
 if __name__ == "__main__":
     app.run(debug=True)
-
