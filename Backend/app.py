@@ -49,7 +49,7 @@ def test_db_connection():
     try:
         db_connection = connect_to_database()
         cursor = db_connection.cursor()
-        cursor.execute("SELECT 1")  # Test query
+        cursor.execute("SELECT nebula FROM cohort")  # Corrected query
         close_database_connection(db_connection, cursor)
         return jsonify({'message': 'Database connection test successful'})
     except mysql.connector.Error as err:
