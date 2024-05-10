@@ -19,10 +19,13 @@ app.config['MYSQL_DB'] = os.getenv('DATABASE_NAME')
 # Initialize MySQL
 mysql = MySQL(app)
 
+# Configure static files directory
+app.static_folder = 'static'
+
 # Route to serve the index.html file from the root directory
 @app.route("/", methods=['GET'])
 def index():
-    frontend_path = os.path.join(os.getcwd(), 'index.html')
+    frontend_path = os.path.join(os.getcwd(), 'public', 'index.html')
     return send_file(frontend_path)
 
 # Health Check
