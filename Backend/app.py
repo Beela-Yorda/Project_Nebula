@@ -45,6 +45,22 @@ def test_db_connection():
         return jsonify({'message': 'Database connection test successful'})
     except Exception as err:
         return jsonify({'error': str(err)}), 500
+    
+# Get All Students
+@app.route('/api/students', methods=['GET'])
+def get_all_students():
+    try:
+        db_connection = mysql.connect()  # Establish database connection
+        cursor = db_connection.cursor()
+        query = "SELECT student FROM nebula_summary;"
+        cursor.execute(query)
+        students = [{'student': student[0]} for student in cursor.fetchall()]
+        db_connection.close()  # Close database connection
+        return jsonify(students)
+    except Exception as err:
+        return jsonify({'error': str(err)}), 500
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)
