@@ -55,5 +55,6 @@ def test_db_connection():
     except mysql.connector.Error as err:
         return jsonify({'error': str(err)}), 500
 
+
 if __name__ == "__main__":
     app.run(debug=True)
