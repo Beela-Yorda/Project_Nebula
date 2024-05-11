@@ -19,14 +19,6 @@ app.config['MYSQL_DB'] = os.getenv('DATABASE_NAME')
 # Initialize MySQL
 mysql = MySQL(app)
 
-# Configure static files directory
-#app.static_folder = 'public/assets'
-
-
-# @app.route('/static/<path:filename>')
-# def serve_static_file(filename):
- #  return serve_static_file(filename)
-
 # Route to serve the index.html file from the root directory
 @app.route("/", methods=['GET'])
 def index():
@@ -44,7 +36,7 @@ def test_db_connection():
     try:
         db_connection = mysql.connect()
         cursor = db_connection.cursor()
-        cursor.execute("SELECT nebula FROM cohort")  # Corrected query
+        cursor.execute("SELECT * FROM nebula_summary")  # Corrected query
         cursor.close()
         db_connection.close()
         return jsonify({'message': 'Database connection test successful'})
