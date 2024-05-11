@@ -20,7 +20,12 @@ app.config['MYSQL_DB'] = os.getenv('DATABASE_NAME')
 mysql = MySQL(app)
 
 # Configure static files directory
-app.static_folder = 'static'
+app.static_folder = 'public/assets'
+
+
+@app.route('/static/<path:filename>')
+def serve_static_file(filename):
+  return serve_static_file(filename)
 
 # Route to serve the index.html file from the root directory
 @app.route("/", methods=['GET'])
