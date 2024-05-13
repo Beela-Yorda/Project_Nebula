@@ -1,4 +1,4 @@
-from flask import Flask, send_file, jsonify, send_from_directory
+from flask import Flask, send_file, jsonify
 from flask_cors import CORS
 from flask_mysqldb import MySQL
 from dotenv import load_dotenv
