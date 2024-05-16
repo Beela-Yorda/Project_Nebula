@@ -1,13 +1,13 @@
  services:
   frontend:
     build:
-      context: ./frontend
+      context: /frontend
     ports:
       - "80:80"
 
   backend:
     build:
-      context: ./Backend
+      context: /Backend
     ports:
       - "8000:8000"
     environment:
