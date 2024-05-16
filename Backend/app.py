@@ -31,7 +31,7 @@ def test_db_connection():
     try:
         db_connection = mysql.connection
         cursor = db_connection.cursor()
-        cursor.execute("SELECT * FROM nebula_summary")  # Corrected query
+        cursor.execute("SELECT * FROM nebula_summary")
         cursor.close()
         db_connection.close()
         return jsonify({'message': 'Database connection test successful'})
