@@ -1,15 +1,16 @@
 from flask import Flask, send_file, jsonify
 from flask_cors import CORS
 from flask_mysqldb import MySQL
-from dotenv import load_dotenv
 import os
 import mysql.connector
 
-# Load variables from .env file
-load_dotenv()
-
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
+
+app.config['MYSQL_DATABASE_URI'] = os.environ.get('DATABASE_URL')
+app.config['MYSQL_USER'] = os.environ.get('DATABASE_USER')
+app.config['MYSQL_PASSWORD'] = os.environ.get('DATABASE_PASSWORD')
+app.config['MYSQL_DB'] = os.environ.get('DATABASE_NAME')
 
 # Initialize MySQL
 mysql = MySQL(app)

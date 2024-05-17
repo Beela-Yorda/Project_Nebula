@@ -59810,7 +59810,7 @@ var Wde = function (t, n) {
   return d.createElement(Ct, fe({}, t, { ref: n, icon: Hde }));
 };
 const Kde = d.forwardRef(Wde),
-  Vde = "public/spaceday-uR6wP3Po.png",
+  Vde = "frontend/public/spaceday-uR6wP3Po.png",
   { Header: r4e, Content: Ude, Footer: Gde } = Cl,
   { Title: qde, Paragraph: Jb } = v5,
   Xde = () =>
